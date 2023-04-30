@@ -1,0 +1,15 @@
+FROM php:8.1-apache
+
+# Open the port 80 first
+EXPOSE 80
+
+COPY ./index.php /var/www/html
+
+RUN docker-php-ext-install pdo_mysql
+
+# Change ownership to www-data
+RUN chown -R www-data:www-data /var/www/html 
+
+# 744 -> 7 RWX owner, 4 R group, 4 R public
+RUN chmod -R 744 /var/www/html 
+RUN find /var/www/html -type d -exec chmod g+s {} \;
