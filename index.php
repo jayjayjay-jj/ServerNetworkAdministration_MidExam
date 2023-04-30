@@ -12,12 +12,12 @@ try {
     die("ERROR: Could not connect. " . $e->getMessage());
 }
 
-$stmt = $pdo->query('SELECT * FROM Users');
+$query = $pdo->query('SELECT * FROM Users');
 
 echo '<table>';
 echo '<tr><th>ID</th><th>Name</th><th>Address</th><th>Position</th></tr>';
 
-while ($row = $stmt->fetch()) {
+while ($row = $query->fetch()) {
     echo '<tr>';
     echo '<td>' . $row['UserID'] . '</td>';
     echo '<td>' . $row['UserName'] . '</td>';
